@@ -5309,3 +5309,608 @@ body.menu-open {
     }
 
 }
+
+
+
+
+/* =========================================================
+   PROJECT GALLERY / LIGHTBOX
+========================================================= */
+
+.project-gallery-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+}
+
+.project-gallery-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================================================
+   BACKDROP
+========================================================= */
+
+.project-gallery-backdrop {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(5, 12, 20, 0.94);
+
+    backdrop-filter: blur(8px);
+}
+
+
+/* =========================================================
+   GALLERY CONTAINER
+========================================================= */
+
+.project-gallery-container {
+    position: relative;
+    z-index: 2;
+
+    width: min(1100px, 100%);
+
+    max-height: 92vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--navy-soft);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.4);
+
+    transform: translateY(20px) scale(0.98);
+
+    transition:
+        transform 0.35s ease;
+}
+
+.project-gallery-modal.active
+.project-gallery-container {
+    transform: translateY(0) scale(1);
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.project-gallery-close {
+    position: absolute;
+
+    top: 18px;
+    right: 18px;
+
+    z-index: 5;
+
+    width: 44px;
+    height: 44px;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    background: rgba(11, 23, 36, 0.75);
+
+    color: var(--white);
+
+    font-size: 28px;
+    font-weight: 300;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease;
+}
+
+.project-gallery-close:hover {
+    background: var(--bronze);
+    border-color: var(--bronze);
+    color: var(--white);
+}
+
+
+/* =========================================================
+   MAIN IMAGE AREA
+========================================================= */
+
+.project-gallery-image-wrap {
+    position: relative;
+
+    width: 100%;
+
+    height: min(62vh, 650px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #07111c;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   MAIN IMAGE
+========================================================= */
+
+.project-gallery-image-wrap > img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+/* =========================================================
+   ARROWS
+========================================================= */
+
+.project-gallery-arrow {
+    position: absolute;
+
+    top: 50%;
+
+    z-index: 4;
+
+    transform: translateY(-50%);
+
+    width: 52px;
+    height: 52px;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    background: rgba(11, 23, 36, 0.8);
+
+    color: var(--white);
+
+    font-size: 34px;
+    font-weight: 300;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.project-gallery-arrow:hover {
+    background: var(--bronze);
+    border-color: var(--bronze);
+
+    transform:
+        translateY(-50%)
+        scale(1.05);
+}
+
+
+.project-gallery-prev {
+    left: 20px;
+}
+
+
+.project-gallery-next {
+    right: 20px;
+}
+
+
+/* =========================================================
+   PROJECT INFO
+========================================================= */
+
+.project-gallery-info {
+    padding: 25px 30px 20px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    color: var(--white);
+}
+
+
+.project-gallery-number {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--bronze);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+}
+
+
+.project-gallery-info h3 {
+    margin: 0;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 25px;
+    font-weight: 700;
+
+    color: var(--white);
+}
+
+
+.project-gallery-meta {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--slate-light);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   THUMBNAILS
+========================================================= */
+
+.project-gallery-thumbnails {
+    display: flex;
+
+    gap: 10px;
+
+    padding: 0 30px 25px;
+
+    overflow-x: auto;
+
+    scrollbar-width: thin;
+}
+
+
+.project-gallery-thumbnail {
+    flex: 0 0 82px;
+
+    width: 82px;
+    height: 62px;
+
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    background: transparent;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    opacity: 0.55;
+
+    transition:
+        opacity 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.project-gallery-thumbnail:hover {
+    opacity: 0.85;
+
+    transform: translateY(-2px);
+}
+
+
+.project-gallery-thumbnail.active {
+    opacity: 1;
+
+    border-color: var(--bronze);
+}
+
+
+.project-gallery-thumbnail img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* =========================================================
+   PREVENT BACKGROUND SCROLL
+========================================================= */
+
+body.gallery-open {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   PROJECT CARD INTERACTION
+========================================================= */
+
+.project-card {
+    cursor: pointer;
+}
+
+
+.project-card:focus {
+    outline: 2px solid var(--bronze);
+    outline-offset: 4px;
+}
+
+
+/* =========================================================
+   GALLERY DESCRIPTION
+========================================================= */
+
+.projects-gallery-description {
+    max-width: 650px;
+
+    margin-top: 20px;
+
+    color: var(--slate);
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   FILTER GROUPS
+========================================================= */
+
+.project-filter-group {
+    margin-top: 40px;
+}
+
+
+.project-filter-heading {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 15px;
+}
+
+
+.project-filter-heading span {
+    color: var(--bronze);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+}
+
+
+.project-filter-heading strong {
+    color: var(--navy);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.08em;
+}
+
+
+.project-filter-group .project-filters {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   PROJECT CAPABILITY
+========================================================= */
+
+.projects-capability {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 18px;
+
+    max-width: 760px;
+
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+
+.projects-capability-line {
+    flex: 0 0 3px;
+
+    width: 3px;
+    min-height: 55px;
+
+    background: var(--bronze);
+}
+
+
+.projects-capability p {
+    margin: 0;
+
+    color: var(--slate);
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+.projects-capability strong {
+    color: var(--navy);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .project-gallery-modal {
+        padding: 15px;
+    }
+
+
+    .project-gallery-container {
+        max-height: 94vh;
+    }
+
+
+    .project-gallery-image-wrap {
+        height: 52vh;
+    }
+
+
+    .project-gallery-close {
+        top: 12px;
+        right: 12px;
+
+        width: 40px;
+        height: 40px;
+
+        font-size: 24px;
+    }
+
+
+    .project-gallery-arrow {
+        width: 42px;
+        height: 42px;
+
+        font-size: 28px;
+    }
+
+
+    .project-gallery-prev {
+        left: 10px;
+    }
+
+
+    .project-gallery-next {
+        right: 10px;
+    }
+
+
+    .project-gallery-info {
+        padding: 20px;
+
+        display: block;
+    }
+
+
+    .project-gallery-info h3 {
+        font-size: 20px;
+    }
+
+
+    .project-gallery-meta {
+        margin-top: 8px;
+    }
+
+
+    .project-gallery-thumbnails {
+        padding: 0 20px 20px;
+    }
+
+
+    .project-gallery-thumbnail {
+        flex-basis: 70px;
+
+        width: 70px;
+        height: 54px;
+    }
+
+
+    .projects-capability {
+        margin-top: 35px;
+        margin-bottom: 35px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .project-gallery-modal {
+        padding: 8px;
+    }
+
+
+    .project-gallery-image-wrap {
+        height: 45vh;
+    }
+
+
+    .project-gallery-info {
+        padding: 16px;
+    }
+
+
+    .project-gallery-info h3 {
+        font-size: 18px;
+    }
+
+
+    .project-gallery-arrow {
+        width: 38px;
+        height: 38px;
+
+        font-size: 25px;
+    }
+
+
+    .project-gallery-thumbnails {
+        padding: 0 16px 16px;
+    }
+
+
+    .project-gallery-thumbnail {
+        flex-basis: 62px;
+
+        width: 62px;
+        height: 48px;
+    }
+
+}
