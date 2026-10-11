@@ -338,7 +338,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const message =
 
-`Hello Mr Mensah,
+`Hello Eajek Construction Ltd,
 
 I would like to request a construction service.
 
@@ -435,7 +435,7 @@ Thank you.`;
 
 
         const message =
-            "Hello Mr Mensah, I would like to make an enquiry about your construction services.";
+            "Hello Eajek Construction Ltd, I would like to make an enquiry about your construction services.";
 
 
         whatsappLink.href =

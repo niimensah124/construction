@@ -264,6 +264,31 @@ button {
 }
 
 
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+
+.brand-text strong {
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+
+.brand-text small {
+    margin-top: 5px;
+
+    font-size: 0.48rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+
+    opacity: 0.75;
+}
+
+
 /* =========================================================
    DESKTOP NAV
 ========================================================= */
@@ -5914,3 +5939,19 @@ body.gallery-open {
     }
 
 }
+
+a.logo img {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  background: #ffffff;
+  padding: 2px;
+  object-fit: contain;
+}
+
+
+
+
+
+
+.text-link{color: black;}
